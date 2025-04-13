@@ -89,7 +89,7 @@ function base_package() {
     print_install "Install the required packages"
     sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
     sysctl -w net.ipv6.conf.default.disable_ipv6=1  >/dev/null 2>&1
-    sudo apt install software-properties-common -y
+    apt-get install --no-install-recommends software-properties-common
     sudo add-apt-repository ppa:vbernat/haproxy-3.0 -y
     apt-get -y install haproxy=3.0.\
     sudo apt update && apt upgrade -y
