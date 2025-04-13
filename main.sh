@@ -89,14 +89,13 @@ function base_package() {
     print_install "Install the required packages"
     sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
     sysctl -w net.ipv6.conf.default.disable_ipv6=1  >/dev/null 2>&1
-    apt-get install --no-install-recommends software-properties-common
-    sudo add-apt-repository ppa:vbernat/haproxy-3.0 -y
-    apt-get -y install haproxy=3.0.\
+    sudo apt install software-properties-common -y
+    sudo add-apt-repository ppa:vbernat/haproxy-2.7 -y
     sudo apt update && apt upgrade -y
     # linux-tools-common util-linux gnupg gnupg2 gnupg1  \
-    sudo apt install squid nginx zip pwgen openssl bash-completion  \
+    sudo apt install squid nginx zip pwgen openssl netcat bash-completion  \
     curl socat xz-utils wget apt-transport-https dnsutils socat \
-    tar wget curl ruby zip unzip p7zip-full python3-pip libc6  \
+    tar wget curl ruby zip unzip p7zip-full python3-pip haproxy libc6  \
     msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent \
     net-tools  jq openvpn easy-rsa python3-certbot-nginx p7zip-full tuned fail2ban -y
     apt-get clean all; sudo apt-get autoremove -y
@@ -259,7 +258,7 @@ function download_config(){
     # > Add menu, thanks to NevermoreSSH <3
     wget -O /tmp/menu-master.zip "${REPO}config/menu.zip" >/dev/null 2>&1
     mkdir /tmp/menu
-    7z e  /tmp/menu-master.zip -o/tmp/menu/ >/dev/null 2>&1
+    unzip -o /tmp/menu-master.zip -d /tmp/menu/ >/dev/null 2>&1
     chmod +x /tmp/menu/*
     mv /tmp/menu/* /usr/sbin/
 
