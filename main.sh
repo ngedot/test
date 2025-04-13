@@ -94,7 +94,7 @@ function base_package() {
     apt-get -y install haproxy=3.0.\
     sudo apt update && apt upgrade -y
     # linux-tools-common util-linux gnupg gnupg2 gnupg1  \
-    sudo apt install squid nginx zip pwgen openssl netcat bash-completion  \
+    sudo apt install squid nginx zip pwgen openssl bash-completion  \
     curl socat xz-utils wget apt-transport-https dnsutils socat \
     tar wget curl ruby zip unzip p7zip-full python3-pip libc6  \
     msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent \
