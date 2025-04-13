@@ -93,7 +93,7 @@ function base_package() {
     sudo add-apt-repository ppa:vbernat/haproxy-2.7 -y
     sudo apt update && apt upgrade -y
     # linux-tools-common util-linux gnupg gnupg2 gnupg1  \
-    sudo apt install squid nginx zip pwgen openssl netcat netcat-openbsd bash-completion  \
+    sudo apt install squid nginx zip pwgen openssl netcat bash-completion  \
     curl socat xz-utils wget apt-transport-https dnsutils socat \
     tar wget curl ruby zip unzip p7zip-full python3-pip haproxy libc6  \
     msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent \
@@ -379,7 +379,7 @@ print_ok "Selesai pemasangan modul tambahan"
 
 
 ########## SETUP FROM HERE ##########
-# ORIGINAL SCRIPT BY NEVERMORESSH   #
+# ORIGINAL SCRIPT BY SERVER PREMIUM VIP #
 #####################################
 echo "INSTALLING SCRIPT..."
 
