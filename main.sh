@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ### Color
-Green="\e[92;1m"
-RED="\033[31m"
+GREEN="\e[92;1m"
+RED="\e[31m"
 YELLOW="\033[33m"
 BLUE="\033[36m"
 FONT="\033[0m"
@@ -30,7 +30,7 @@ KEY="2145515560:AAE9WqfxZzQC-FYF1VUprICGNomVfv6OdTU"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 REPO="https://raw.githubusercontent.com/ngedot/test/main/"
 APT="apt-get -y install "
-domain=$(cat /root/domain)
+domain=$(cat /etc/xray/domain)
 start=$(date +%s)
 secs_to_human() {
     echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
@@ -156,9 +156,9 @@ function install_xray(){
     curl -s ipinfo.io/city >> /etc/xray/city
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >> /etc/xray/isp
     domainSock_dir="/run/xray";! [ -d $domainSock_dir ] && mkdir  $domainSock_dir
-    chown www-data.www-data $domainSock_dir
+    chown www-data:www-data $domainSock_dir
     xray_latest="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
-    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $latest_version
+    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $xray_latest
 #    unzip -q xray.zip && rm -rf xray.zip
 #    mv xray /usr/sbin/xray
     cp /usr/local/bin/xray  /usr/sbin/xray
@@ -242,7 +242,7 @@ function download_config(){
     sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
     wget -O /etc/nginx/nginx.conf "${REPO}config/nginx.conf" >/dev/null 2>&1
     wget -q -O /etc/squid/squid.conf "${REPO}config/squid.conf" >/dev/null 2>&1
-    echo "visible_hostname $(cat /etc/xray/domain)" /etc/squid/squid.conf
+    echo "visible_hostname $(cat /etc/xray/domain)" >> /etc/squid/squid.conf
     mkdir -p /var/log/squid/cache/
     chmod 777 /var/log/squid/cache/
     echo "* - nofile 65535" >> /etc/security/limits.conf
@@ -369,7 +369,7 @@ EOF
 chgrp mail /etc/msmtprc
 chown 0600 /etc/msmtprc
 touch /var/log/msmtp.log
-chown syslog:adm /var/log/msmtp.log
+chown root:root /var/log/msmtp.log
 chmod 660 /var/log/msmtp.log
 ln -s /usr/bin/msmtp /usr/sbin/sendmail >/dev/null 2>&1
 ln -s /usr/bin/msmtp /usr/bin/sendmail >/dev/null 2>&1
