@@ -90,12 +90,13 @@ function base_package() {
     sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
     sysctl -w net.ipv6.conf.default.disable_ipv6=1  >/dev/null 2>&1
     sudo apt install software-properties-common -y
-    sudo add-apt-repository ppa:vbernat/haproxy-2.6 -y
+    sudo add-apt-repository ppa:vbernat/haproxy-3.0 -y
+    apt-get -y install haproxy=3.0.\
     sudo apt update && apt upgrade -y
     # linux-tools-common util-linux gnupg gnupg2 gnupg1  \
     sudo apt install squid nginx zip pwgen openssl netcat bash-completion  \
     curl socat xz-utils wget apt-transport-https dnsutils socat \
-    tar wget curl ruby zip unzip p7zip-full python3-pip haproxy libc6  \
+    tar wget curl ruby zip unzip p7zip-full python3-pip libc6  \
     msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent \
     net-tools  jq openvpn easy-rsa python3-certbot-nginx p7zip-full tuned fail2ban -y
     apt-get clean all; sudo apt-get autoremove -y
