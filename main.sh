@@ -155,8 +155,8 @@ function install_xray(){
     print_install "Installing the latest Xray module"
     curl -s ipinfo.io/city >> /etc/xray/city
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >> /etc/xray/isp
-    xray_latest="$(curl -s https://api.github.com/repos/dharak36/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
-    xraycore_link="https://github.com/NevermoreSSH/Xcore-custompath/releases/download/Xray-linux-64-v1.6.5.1/Xray-linux-64-v1.6.5.1"
+    xray_latest="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
+    xraycore_link="$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $latest_version
     curl -sL "$xraycore_link" -o xray
 #    unzip -q xray.zip && rm -rf xray.zip
     mv xray /usr/sbin/xray
