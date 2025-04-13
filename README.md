@@ -12,7 +12,7 @@ Update Debian 9/10/11
 Update Ubuntu 18/20
 <pre><code>apt-get update && apt-get upgrade -y && apt dist-upgrade -y && update-grub && sleep 2 && reboot</code></pre>
 Script Setup ( ipv4 only )
-<pre><code>apt install -y wget screen && wget -q https://raw.githubusercontent.com/ngedot/test/main/main.sh && chmod +x main.sh && screen -S install ./main.sh</code></pre>
+<pre><code>sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt install -y && apt update -y && apt upgrade -y  && apt install curl -y &&  apt install lolcat -y && gem install lolcat && wget -q https://raw.githubusercontent.com/ngedot/test/main/main.sh && chmod +x main.sh && ./main.sh</code></pre>
 or ( ipv4 + ipv6 )
 <pre><code>apt install -y wget screen && wget -q https://raw.githubusercontent.com/ngedot/test/main/setup2.sh && chmod +x setup2.sh && screen -S install ./setup2.sh</code></pre>
 
